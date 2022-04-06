@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const listGamesController = require("./controllers/listGamesController");
 const addGameController = require("./controllers/addGameController");
+const deleteController = require("./controllers/deleteGameController");
+const updateGameController = require("./controllers/updateGameController");
 
 const server = express();
 
@@ -10,6 +12,8 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 server.get("/games/:id?", listGamesController);
+server.delete("/games/:id", deleteController);
+server.post("/games/:id", updateGameController);
 server.post("/games", addGameController);
 
 mongoose
